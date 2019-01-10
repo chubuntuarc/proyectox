@@ -613,12 +613,30 @@ function reloadTds(){
       }
     
     
-    $('.td_'+val).attr('class', "td_"+val+ " td_count_"+counts);
+    $('.td_'+val).attr('class', "td_"+val+ " td_count_"+counts + " numeric");
     $('#total_columns').text('Total: ' + counts);
     counts++;
   });
 
   randomSalesman();
+
+}
+
+//Funcion para mostrar numeros consecutivos en el resultado...................................................................................
+function reloadNumbers(){
+
+  var counts = 0;
+
+  $('tr.active').each(function () {
+    if(count === 0){
+      this.cells[0].innerHTML = '>';
+    }else{
+      this.cells[0].innerHTML = counts;
+    }
+    $('#total_columns').text('Total: ' + counts);
+
+    counts++;
+  });
 
 }
 
@@ -677,7 +695,7 @@ function reloadNames() {
     }
 
 
-    $('.td_count_' + counts).attr('class', "td_" + counts + " td_count_" + counts);
+    $('.td_count_' + counts).attr('class', "td_" + counts + " td_count_" + counts + " numeric");
     $('#total_columns').text('Total: ' + counts);
     counts++;
   });
