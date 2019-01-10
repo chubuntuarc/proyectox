@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Ventas</title>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+      
+    </head>
+
+    <body>
+      <script>
+      // Initialize Firebase
+       var config = {
+          apiKey: "AIzaSyAtKiOIVY_9hzYzMkFz1uDINgDsUvfpD-Y",
+          authDomain: "numeros-multi.firebaseapp.com",
+          databaseURL: "https://numeros-multi.firebaseio.com",
+          projectId: "numeros-multi",
+          storageBucket: "numeros-multi.appspot.com",
+          messagingSenderId: "248998428812"
+        };
+        firebase.initializeApp(config);
+        
+      $(document).ready(function(){
+        inicializar();
+        getTurn();
+      }); 
+        
+        function inicializar(){
+          sales = firebase.database().ref().child('sales_test_workana');
+        }
+
+        //Pantalla que envia los datos
+        function runProcess(val){
+          var nombre = val; //Nombre del vendedor activo
+          if($('#turno_input').val() === ''){ //Turno actual
+            var turno = 1;
+          }else{
+            var turno = parseInt($('#turno_input').val()) + 1;
+          }
+          //Se actualiza el valor en linea
+          sales.update({
+            turno : turno,
+            nombre: nombre
+          });
+        }
+        
+        //Pantalla a mostrar turnos.
+        //Obtienes el valor cuando cambie
+        function getTurn(){
+          sales.on('value',function(snap){
+            var datos = snap.val();
+            console.log(datos)
+            $('#turno_input').val(datos.turno);
+            $('#turno').text(datos.turno);
+            $('#vendedor').text(datos.nombre);
+        });
+        }
+      </script>
+      
+      <!--Botones simulando el click de cada vendedor-->
+      <a class="waves-effect waves-light btn" onclick="runProcess('Ventas1');">Ventas1</a>
+      <a class="waves-effect waves-light btn" onclick="runProcess('Ventas2');">Ventas2</a>
+      <a class="waves-effect waves-light btn" onclick="runProcess('Ventas3');">Ventas3</a>
+
+      <!--Simulando pantalla donde se leeran los datos-->
+      <input type="text" id="turno_input">
+      <h5>Turno</h5>
+      <p id="turno"></p>
+      <p id="vendedor"></p>
+
+      <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
+  </html>

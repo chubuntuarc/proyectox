@@ -1,0 +1,33 @@
+{
+    "short_name": "PX",
+    "name": "Proyecto X",
+    "icons": [
+        {
+            "src": "favicon.png",
+            "type": "image/png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "favicon.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "favicon.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "favicon.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/index.html",
+    "description": "App de datos aleatorios",
+    "background_color": "#2B2B2B",
+    "theme_color": "#5C8EF0",
+    "orientation": "portrait",
+    "display": "standalone",
+    "lang": "es-MX"
+}

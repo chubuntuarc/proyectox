@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Proyecto X</title>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+      <link rel="stylesheet" href="style.css">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+      <!--PWA-->
+      <meta name="theme-color" content="#5C8EF0">
+      <meta name="MobileOptimized" content="width">
+      <meta name="HandheldFriendly" content="true">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+      <link rel="shortcut icon" type="image/png" href="favicon.png" />
+      <link rel="apple-touch-startup-image" href="logo.png">
+      <link rel="manifest" href="manifest.json">
+
+      <link href="favicon.png" rel="apple-touch-icon" />
+      <link href="favicon.png" rel="apple-touch-icon" sizes="152x152" />
+      <link href="favicon.png" rel="apple-touch-icon" sizes="167x167" />
+      <link href="favicon.png" rel="apple-touch-icon" sizes="180x180" />
+      <link href="favicon.png" rel="icon" sizes="192x192" />
+      <link href="favicon.png" rel="icon" sizes="128x128" />
+      
+      <script src="resultados.js"></script>
+
+    </head>
+
+    <body>
+      <!--Boton para renovar service worker-->
+      <div id="snackbar">Nueva versión disponible. Click <a href="#!" id="reload">aquí</a> para actualizar.</div>
+
+      <!--Loading del sitio-->
+      <div id="loading">
+        <img id="loading-image" src="loading.gif" alt="Loading..." />
+      </div>
+  
+      <!--Sidenav-->
+      <ul id="slide-out" class="sidenav sidenav-fixed blue-grey darken-4 z-depth-1" style="width: 240px;">
+        <li><div class="user-view">
+          <div class="background"></div>
+          <!--<a href="#user"><img class="circle center-align" src="images/logo.png"></a>
+          <a href="#name"><span class="white-text name">John Doe</span></a>
+          <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>-->
+        </div></li>
+        <li><a href="/" class="grey-text text-lighten-2"><i class="material-icons grey-text text-lighten-2">apps</i>Cálculos</a></li>
+        <li><div class="divider"></div></li>
+        <!--<li><a href="#!" class="grey-text text-lighten-2" onclick="salir()"><i class="material-icons grey-text text-lighten-2">chevron_left</i>Salir</a></li>-->
+        <li><a class="subheader grey-text text-lighten-2" style="font-size:12px;">© 2018.</a></li>
+        <li><a class="subheader grey-text text-lighten-2" style="font-size:12px;" id="version"></a></li>
+      </ul>
+      
+      <main style="margin-top: 30px;">
+        <!--Menu movil-->
+        <a href="#" id="menu" data-target="slide-out" class="sidenav-trigger hide-on-large-only white-text" style="z-index:999;"><i class="material-icons">menu</i></a>
+      <input type="hidden" id="id_almacen">
+      <input type="hidden" id="userid">
+      <input type="hidden" id="bcode">
+      <input type="hidden" id="hide_counter" value="0">
+      <!--Work container-->
+      <div id="work-place">
+        <div class="row" style="margin-top: 8px;">
+          <div class="input-field col s4">
+          <select id="partidos">
+            <option value="" disabled selected>Elegir</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+          </select>
+          <label>Partidos a calcular</label>
+        </div>
+        <div class="input-field col s4 hide" id="select-filtro-div" >
+          <select id="select-filtro" style="font-size: 10px;">
+            <option value="0">-</option>
+            <option value="1">Local</option>
+            <option value="2">Empate</option>
+            <option value="3">Visita</option>
+          </select>
+          <label>Filtro</label>
+        </div>
+        <div class="input-field col s4 hide" id="select-partido-div">
+          <select id="select-partido" style="font-size: 10px;">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+          </select>
+          <label>Partido</label>
+        </div>
+        </div>
+        </div>
+
+         <!--Clean data table-->
+         <div class="row" id="btns_row">
+           <div class="col s12 right-align">
+             <p style="text-align: center;position: fixed;top: -14px;background-color: #000;color: #FFF;width: 100%;height: 32px;margin-left: -11px;line-height: 32px;">PROYECTO X</p>
+             <div id="search_btns" class="hide">
+              <div class="input-field col s12" id="search_value_field">
+                <input placeholder="Buscar resultado" id="search_value" type="text" class="validate" onkeyup="this.value = this.value.toUpperCase();">
+                <label for="search_value">Buscar resultado</label>
+              </div>
+             
+              <div class="row col s12" style="margin-bottom: 6px;">
+                <ul id="results_list" class="col s12 hide"></ul>
+
+                <div class="row">
+                  <div class="col s12">
+                    <button onclick="limpiarInput()" class="waves-effect waves-light btn blue-grey col s3">Limpiar</button>
+                    <button onclick="findRows(document.getElementById('search_value').value)" class="waves-effect waves-light btn col s3">Buscar</button>
+                    <button onclick="$('tbody').shuffle();" id="shuffle_btn" class="waves-effect waves-light btn blue col s3 hide">Mezclar</button>
+                    <button onclick="reloadNames()" id="shuffle_btn" class="waves-effect waves-light btn orange col s3">Numerar</button>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col s12">
+                    <a id="fil_btn" class="waves-effect waves-light btn col s3" onclick="filtrar();$(this).addClass('disabled');$('#work-place').hide();">REDUCIR</a>
+                    <a class="waves-effect waves-light btn col s3 blue" onclick="window.location.reload();">BORRAR</a>
+                    <button onclick="reloadNames()" id="shuffle_btn" class="waves-effect waves-light btn orange col s3">Nombrar*</button>
+                    <button id="print_btn" onclick="imprimir()" class="waves-effect waves-light btn col s3 red">Imprimir</button>
+                  </div>
+                </div>
+                
+              </div>
+             </div>
+           </div>
+         </div>
+         
+         <div class="row hide" id="refresh" style="margin-top: -15px;margin-bottom: -10px;">
+           <div class="input-field col s4">
+              <select id="clean_l" onchange="cleanTableData('L')">
+                <option value="" selected>-</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="14">3S</option>
+                <option value="13">4S</option>
+                <option value="10">5S</option>
+                <option value="11">3L - 3E</option>
+                <option value="12">3L - 3V</option>
+                <option value="15">4 Pares</option>
+              </select>
+              <label>L</label>
+            </div>
+            <div class="input-field col s4">
+              <select id="clean_e" onchange="cleanTableData('E')">
+                <option value="" selected>-</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="14">3S</option>
+                <option value="13">4S</option>
+                <option value="10">5S</option>
+                <option value="11">3E - 3L</option>
+                <option value="12">3E - 3V</option>
+                <option value="15">4 Pares</option>
+              </select>
+              <label>E</label>
+            </div>
+            <div class="input-field col s4">
+              <select id="clean_v" onchange="cleanTableData('V')">
+                <option value="" selected>-</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="14">3S</option>
+                <option value="13">4S</option>
+                <option value="10">5S</option>
+                <option value="11">3V - 3L</option>
+                <option value="12">3V - 3E</option>
+                <option value="15">4 Pares</option>
+              </select>
+              <label>V</label>
+            </div>
+         </div>
+         
+         <div class="row" style="margin-top: -10px;">
+            <div class="col s12">
+              <div class="progress hide">
+                <div class="indeterminate"></div>
+            </div>
+              <!--<table class="responsive-table highlight striped z-depth-2" id="tabla" style="margin-bottom: 10px;"></table>-->
+              <div class="responsive-table highlight striped z-depth-2" id="tabla_div" style="margin-bottom: 10px;"></div>
+              <!-- <a id="print_btn" class="waves-effect waves-light btn red white-text col s2 offset-s10 hide" onclick="imprimir();"><i class="material-icons">local_printshop</i></a> -->
+            </div>
+            <div><br><p id="total_columns" style="margin-left: 10px;font-size: 16px;"></p></div>
+        </div>
+          
+      </div>
+
+      <!--FAB reiniciar-->
+      <!-- <div class="fixed-action-btn">
+        <a class="btn-floating btn-large blue" onclick="window.location.reload();">
+          <i class="large material-icons">replay</i>
+        </a>
+      </div> -->
+      </main>
+      
+      
+
+      <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/jsbarcode/3.6.0/JsBarcode.all.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('.message').sidenav();
+        $('.sidenav').sidenav();
+      })
+    </script>
+    </body>
+  </html>
