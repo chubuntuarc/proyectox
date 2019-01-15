@@ -421,7 +421,22 @@ function filtrar(){
       break;
       }
   }else{
-    function removeDuplicateRows($table){
+
+    removeDuplicateRows($('#tabla'));
+  }
+  
+
+//reloadTds();
+$('#print_btn').show();
+$('#search_btns').show();
+$('#shuffle_btn').show();
+  if ($('#search_value').val() !== ''){
+  findRows($('#search_value').val());
+}
+    
+}
+
+function removeDuplicateRows($table){
     function getVisibleRowText($row){
         return $row.find('td.td-vals').text();
     }
@@ -436,20 +451,6 @@ function filtrar(){
           });
       });
   }
-
-    removeDuplicateRows($('#tabla'));
-  }
-  
-
-reloadTds();
-$('#print_btn').show();
-$('#search_btns').show();
-$('#shuffle_btn').show();
-  if ($('#search_value').val() !== ''){
-  findRows($('#search_value').val());
-}
-    
-}
 
 function borrar(){
   //$('.progress').show();
@@ -628,7 +629,7 @@ function reloadNumbers(){
   var counts = 0;
 
   $('tr.active').each(function () {
-    if(count === 0){
+    if(counts === 0){
       this.cells[0].innerHTML = '>';
     }else{
       this.cells[0].innerHTML = counts;
@@ -640,122 +641,123 @@ function reloadNumbers(){
 
 }
 
-//Set count on tds
-function reloadNames() {
+//Funcion para mostrar nombres y vendedores aleatorios...........................................................................................
+function reloadNames(){
   var counts = 0;
-  var counter = 0;
-  var last_repeat = 1;
   var random_name_position = getRandomInteger(5, 15);
-  var random_counts = 0;
+  
+  var valor_celda = '';
   var name_to_repeat = '';
+  var countsx = 0;
+  var random_counts = 0;
+  var last_repeat = 1;
+  var counter = 0;
 
   $('tr.active').each(function () {
     var name = names[Math.floor(Math.random() * names.length)];
-    $('.row_' + counts).attr('class', "active row_" + counts + " row_count_" + counts);
-
-    console.log('Contador: ' + counts);
-    if (last_repeat < 6) { //Nombres repetidos entre 5-15, 5 veces.
+    
+    if(counts === 0){
+      
+      this.cells[0].innerHTML = '>';
+      
+    }else{
+      
+      if (last_repeat < 6) { //Nombres repetidos entre 5-15, 5 veces.
+        
       if (counts === random_name_position) {
         random_counts = getRandomInteger(5, 15);
         name_to_repeat = name;
-        $('.td_count_' + counts).text(counts +  + name_to_repeat);
+        valor_celda = counts + name_to_repeat;
         console.log('Se repite ' + name_to_repeat + ' ' + random_counts + ' veces.');
 
       } else if (counts > random_name_position && counts <= (random_name_position + random_counts)) {
-        $('.td_count_' + counts).text(counts +  + name_to_repeat);
+        valor_celda = counts + name_to_repeat;
         counter = counter + 1;
         if (random_counts === counter) {
-          var countsx = (random_name_position + random_counts) + random_counts;
+          countsx = (random_name_position + random_counts) + random_counts;
           random_name_position = countsx;
           last_repeat = last_repeat + 1;
           counter = 0;
         }
       } else {
-        $('.td_count_' + counts).text(counts + name);
+       valor_celda = counts + name;
       }
+        
     } else { //Nombres repetidos entre 15-25, 1 vez.
+      
       if (counts === random_name_position) {
         random_counts = getRandomInteger(5, 15);
         name_to_repeat = name;
-        $('.td_count_' + counts).text(counts + name_to_repeat);
+        valor_celda = counts + name_to_repeat;
         console.log('Se repite ' + name_to_repeat + random_counts + ' veces.');
 
       } else if (counts > random_name_position && counts <= (random_name_position + random_counts)) {
-        $('.td_count_' + counts).text(counts + name_to_repeat);
+        valor_celda = counts + name_to_repeat;
         counter = counter + 1;
         if (random_counts === counter) {
-          var countsx = (random_name_position + random_counts) + random_counts;
+          countsx = (random_name_position + random_counts) + random_counts;
           random_name_position = countsx;
           last_repeat = 1;
           counter = 0;
         }
       } else {
-        $('.td_count_' + counts).text(counts + name);
+        valor_celda = counts + name;
       }
     }
-
-
-    $('.td_count_' + counts).attr('class', "td_" + counts + " td_count_" + counts + " numeric");
+     console.log('X::' + valor_celda)
+      this.cells[0].innerHTML = valor_celda;
+      this.classList.add('td_counter_'+counts);
+    }
+    
     $('#total_columns').text('Total: ' + counts);
+
     counts++;
   });
-
-  randomSalesman2();
-
+  
+  randomSalesman();
+  
 }
 
-function randomSalesman2() {
+//Funcion para obtener vendedores aleatorios........................................................................................................
+function randomSalesman() {
   //Random salesmans counters
   var randomSales = 1;
-  var sale_row = 1;
-  var text_original = $('.td_count_' + 1).text();
-  var nuevo_texto = text_original + ' (' + salesman[Math.floor(Math.random() * salesman.length)] + ')';
-  $('.td_count_' + 1).text(nuevo_texto)
-  for (var i = 0; i <= 6000; i++) {
+  var sale_row = 0;
+  var text_original = '';
+  var nuevo_texto = '';
+  var valor_celda_original = '';
+  var valor_celda = '';
+  var i = 0;
+  
+  $('tr.active').each(function () {
     if (i === sale_row) {
-      if (randomSales < 6) {
-        randomSales = randomSales + 1;
-        sale_row = sale_row + getRandomInteger(10, 75);
-        var text_original = $('.td_count_' + sale_row).text();
-        var nuevo_texto = text_original + ' (' + salesman[Math.floor(Math.random() * salesman.length)] + ')';
-        $('.td_count_' + sale_row).text(nuevo_texto);
-      } else {
-        randomSales = 1;
-        sale_row = sale_row + getRandomInteger(75, 150);
-        var text_original = $('.td_count_' + sale_row).text();
-        var nuevo_texto = text_original + ' (' + salesman[Math.floor(Math.random() * salesman.length)] + ')';
-        $('.td_count_' + sale_row).text(nuevo_texto);
-      }
-    }
-  }
-}
+        if(i === 0){
+          this.cells[0].innerHTML = '>';
+        }else{
+          if (randomSales < 6) {
+          randomSales = randomSales + 1;
+          sale_row = sale_row + getRandomInteger(10, 75);
+          //text_original = $('.td_counter_' + sale_row).text();
+          valor_celda_original = this.cells[0].innerText;
+          nuevo_texto = valor_celda_original + ' (' + salesman[Math.floor(Math.random() * salesman.length)] + ')';
+          this.cells[0].innerHTML = nuevo_texto;
+          //$('.td_counter_' + sale_row).text(nuevo_texto);
 
-function randomSalesman(){
-  //Random salesmans counters
-  var randomSales = 1;
-  var sale_row = 1;
-  var text_original = $('.td_count_' + 1).text();
-  var nuevo_texto = text_original + ' ('+salesman[Math.floor(Math.random() * salesman.length)]+')';
-  $('.td_count_' + 1).text(text_original) //Se desactivaron los vendedores
-  for(var i = 0; i <= 6000; i++){
-    if (i === sale_row){
-      if(randomSales < 6){
-        randomSales = randomSales + 1;
-        sale_row = sale_row + getRandomInteger(10, 75);
-        var text_original = $('.td_count_' + sale_row).text();
-        var nuevo_texto = text_original + ' ('+salesman[Math.floor(Math.random() * salesman.length)]+')';
-        $('.td_count_' + sale_row).text(text_original); //Se desactivaron los vendedores
-      }else{
-        randomSales = 1;
-        sale_row = sale_row + getRandomInteger(75, 150);
-        var text_original = $('.td_count_' + sale_row).text();
-        var nuevo_texto = text_original + ' (' + salesman[Math.floor(Math.random() * salesman.length)] + ')';
-        $('.td_count_' + sale_row).text(text_original); //Se desactivaron los vendedores
+        } else {
+          randomSales = 1;
+          sale_row = sale_row + getRandomInteger(75, 150);
+          valor_celda_original = this.cells[0].innerText;
+          nuevo_texto = valor_celda_original + ' (' + salesman[Math.floor(Math.random() * salesman.length)] + ')';
+          this.cells[0].innerHTML = nuevo_texto;
+          //$('.td_counter_' + sale_row).text(nuevo_texto);
+        }
       }
+      
     }
-  }
+    i++;
+  });
+  
 }
-
 
 //Check if value exist consecutive
 function removeConsecutives(val,letter){
