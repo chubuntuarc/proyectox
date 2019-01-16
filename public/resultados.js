@@ -280,8 +280,171 @@ function findRows(value) {
     });
     }
 
-//Delete repet rows
+//Paint repet rows
+function distinguir(){
+  console.log('Entro al filtro')
+  //Check cant of matches
+  var cant = $('#partidos').val();
+  var filtro_letra = $('#select-filtro').val();
+  var filtro_numero = $('#select-partido').val();
+  var count = 0;
+  if(cant === '9'){
+    switch (filtro_numero){
+      case '1': //Filtro en el primer partido L-E-V
+        $('#tabla').find('tr').each(function(index, row){
+            if((index % 3) === 0){
+              console.log(index)
+            }else{
+              console.log(index)
+              this.style.backgroundColor = 'green';
+              this.classList.add("borrar");
+            }
+        });
+      break;
+      case '2': //Filtro en el segundo partido L-E-V
+        $('#tabla').find('tr').each(function(index, row){
+          console.log(index);
+          if(count > 3){
+            console.log(index + 'borrado');
+           this.style.backgroundColor = 'green';
+            this.classList.add("borrar");
+          }
+          if(count < 9){
+              count++;
+            }else{
+              count = 1;
+            }
+        });
+      break;
+      case '3':
+        $('#tabla').find('tr').each(function(index, row){
+          console.log(index);
+          if(count > 9){
+            console.log(index + 'borrado');
+            this.style.backgroundColor = 'green';
+            this.classList.add("borrar");
+          }
+          if(count < 27){
+              count++;
+            }else{
+              count = 1;
+            }
+        });
+      break;
+      case '4':
+        $('#tabla').find('tr').each(function(index, row){
+          console.log(index);
+          if(count > 27){
+            console.log(index + 'borrado');
+            this.style.backgroundColor = 'green';
+            this.classList.add("borrar");
+          }
+          if(count < 81){
+              count++;
+            }else{
+              count = 1;
+            }
+        });
+      break;
+      case '5':
+        $('#tabla').find('tr').each(function(index, row){
+          console.log(index);
+          if(count > 81){
+            console.log(index + 'borrado');
+            this.style.backgroundColor = 'green';
+            this.classList.add("borrar");
+          }
+          if(count < 243){
+              count++;
+            }else{
+              count = 1;
+            }
+        });
+      break;
+      case '6':
+        $('#tabla').find('tr').each(function(index, row){
+          console.log(index);
+          if(count > 243){
+            console.log(index + 'borrado');
+            this.style.backgroundColor = 'green';
+            this.classList.add("borrar");
+          }
+          if(count < 729){
+              count++;
+            }else{
+              count = 1;
+            }
+        });
+      break;
+      case '7':
+        $('#tabla').find('tr').each(function(index, row){
+          console.log(index);
+          if(count > 729){
+            console.log(index + 'borrado');
+           this.style.backgroundColor = 'green';
+            this.classList.add("borrar");
+          }
+          if(count < 2187){
+              count++;
+            }else{
+              count = 1;
+            }
+        });
+      break;
+      case '8':
+        $('#tabla').find('tr').each(function(index, row){
+          console.log(index);
+          if(count > 2187){
+            console.log(index + 'borrado');
+            this.style.backgroundColor = 'green';
+            this.classList.add("borrar");
+          }
+          if(count < 6561){
+              count++;
+            }else{
+              count = 1;
+            }
+        });
+      break;
+      case '9':
+        $('#tabla').find('tr').each(function(index, row){
+          console.log(index);
+          if(count > 6561){
+            console.log(index + 'borrado');
+           this.style.backgroundColor = 'green';
+            this.classList.add("borrar");
+          }
+          if(count < 19683){
+              count++;
+            }else{
+              count = 1;
+            }
+        });
+      break;
+      }
+  }else{
+
+   // removeDuplicateRows($('#tabla'));
+  }
+  
+
+//reloadTds();
+$('#print_btn').show();
+$('#search_btns').show();
+$('#shuffle_btn').show();
+  if ($('#search_value').val() !== ''){
+  findRows($('#search_value').val());
+}
+    
+}
+
 function filtrar(){
+  console.log('Entra al nuevo borrar');
+  $('.borrar').remove();
+}
+
+//Delete repet rows
+function filtrarx(){
   console.log('Entro al filtro')
   //Check cant of matches
   var cant = $('#partidos').val();
