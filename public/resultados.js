@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
   //Tabla generada
   var tabla = '';
   //Version actual a mostrar en menu
-  document.getElementById('version').innerText = 'v1.1.3';
+  document.getElementById('version').innerText = 'v1.1.4';
 
   //Click en recargar version
   var el = document.getElementById('reload');
