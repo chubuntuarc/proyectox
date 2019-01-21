@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
   //Tabla generada
   var tabla = '';
   //Version actual a mostrar en menu
-  document.getElementById('version').innerText = 'v1.1.8';
+  document.getElementById('version').innerText = 'v1.1.9';
 
   //Click en recargar version
   var el = document.getElementById('reload');
@@ -296,7 +296,7 @@ function distinguir(){
               console.log(index)
             }else{
               console.log(index)
-              this.style.backgroundColor = 'green';
+              this.style.backgroundColor = '#2196F3 ';
               this.classList.add("borrar");
             }
         });
@@ -306,7 +306,7 @@ function distinguir(){
           console.log(index);
           if(count > 3){
             console.log(index + 'borrado');
-           this.style.backgroundColor = 'green';
+           this.style.backgroundColor = '#2196F3 ';
             this.classList.add("borrar");
           }
           if(count < 9){
@@ -321,7 +321,7 @@ function distinguir(){
           console.log(index);
           if(count > 9){
             console.log(index + 'borrado');
-            this.style.backgroundColor = 'green';
+            this.style.backgroundColor = '#2196F3 ';
             this.classList.add("borrar");
           }
           if(count < 27){
@@ -336,7 +336,7 @@ function distinguir(){
           console.log(index);
           if(count > 27){
             console.log(index + 'borrado');
-            this.style.backgroundColor = 'green';
+            this.style.backgroundColor = '#2196F3 ';
             this.classList.add("borrar");
           }
           if(count < 81){
@@ -351,7 +351,7 @@ function distinguir(){
           console.log(index);
           if(count > 81){
             console.log(index + 'borrado');
-            this.style.backgroundColor = 'green';
+            this.style.backgroundColor = '#2196F3 ';
             this.classList.add("borrar");
           }
           if(count < 243){
@@ -366,7 +366,7 @@ function distinguir(){
           console.log(index);
           if(count > 243){
             console.log(index + 'borrado');
-            this.style.backgroundColor = 'green';
+            this.style.backgroundColor = '#2196F3 ';
             this.classList.add("borrar");
           }
           if(count < 729){
@@ -381,7 +381,7 @@ function distinguir(){
           console.log(index);
           if(count > 729){
             console.log(index + 'borrado');
-           this.style.backgroundColor = 'green';
+           this.style.backgroundColor = '#2196F3 ';
             this.classList.add("borrar");
           }
           if(count < 2187){
@@ -396,7 +396,7 @@ function distinguir(){
           console.log(index);
           if(count > 2187){
             console.log(index + 'borrado');
-            this.style.backgroundColor = 'green';
+            this.style.backgroundColor = '#2196F3 ';
             this.classList.add("borrar");
           }
           if(count < 6561){
@@ -411,7 +411,7 @@ function distinguir(){
           console.log(index);
           if(count > 6561){
             console.log(index + 'borrado');
-           this.style.backgroundColor = 'green';
+           this.style.backgroundColor = '#2196F3 ';
             this.classList.add("borrar");
           }
           if(count < 19683){
@@ -462,7 +462,7 @@ function filtrarx(){
               console.log(index)
               //$('.row_'+index).remove();
               var row = document.getElementsByClassName('row_'+index);
-              row.style.backgroundColor = 'green';
+              row.style.backgroundColor = '#2196F3 ';
               row.classList.add("borrar");
             }
         });
@@ -476,7 +476,7 @@ function filtrarx(){
             console.log(index + 'borrado');
             //$('.row_'+index).remove();
             var row = document.getElementsByClassName('row_' + index);
-            row.style.backgroundColor = 'green';
+            row.style.backgroundColor = '#2196F3 ';
             row.classList.add("borrar");
           }
           if(count < 9){
@@ -495,7 +495,7 @@ function filtrarx(){
             console.log(index + 'borrado');
             //$('.row_'+index).remove();
             var row = document.getElementsByClassName('row_' + index);
-            row.style.backgroundColor = 'green';
+            row.style.backgroundColor = '#2196F3 ';
             row.classList.add("borrar");
           }
           if(count < 27){
@@ -514,7 +514,7 @@ function filtrarx(){
             console.log(index + 'borrado');
             //$('.row_'+index).remove();
             var row = document.getElementsByClassName('row_' + index);
-            row.style.backgroundColor = 'green';
+            row.style.backgroundColor = '#2196F3 ';
             row.classList.add("borrar");
           }
           if(count < 81){
@@ -533,7 +533,7 @@ function filtrarx(){
             console.log(index + 'borrado');
             //$('.row_'+index).remove();
             var row = document.getElementsByClassName('row_' + index);
-            row.style.backgroundColor = 'green';
+            row.style.backgroundColor = '#2196F3 ';
             row.classList.add("borrar");
           }
           if(count < 243){
@@ -552,7 +552,7 @@ function filtrarx(){
             console.log(index + 'borrado');
             //$('.row_'+index).remove();
             var row = document.getElementsByClassName('row_' + index);
-            row.style.backgroundColor = 'green';
+            row.style.backgroundColor = '#2196F3 ';
             row.classList.add("borrar");
           }
           if(count < 729){
@@ -571,7 +571,7 @@ function filtrarx(){
             console.log(index + 'borrado');
             //$('.row_'+index).remove();
             var row = document.getElementsByClassName('row_' + index);
-            row.style.backgroundColor = 'green';
+            row.style.backgroundColor = '#2196F3 ';
             row.classList.add("borrar");
           }
           if(count < 2187){
@@ -590,7 +590,7 @@ function filtrarx(){
             console.log(index + 'borrado');
             //$('.row_'+index).remove();
             var row = document.getElementsByClassName('row_' + index);
-            row.style.backgroundColor = 'green';
+            row.style.backgroundColor = '#2196F3 ';
             row.classList.add("borrar");  
           }
           if(count < 6561){
@@ -609,7 +609,7 @@ function filtrarx(){
             console.log(index + 'borrado');
             //$('.row_'+index).remove();
             var row = document.getElementsByClassName('row_' + index);
-            row.style.backgroundColor = 'green';
+            row.style.backgroundColor = '#2196F3 ';
             row.classList.add("borrar");
           }
           if(count < 19683){
@@ -652,7 +652,7 @@ function removeDuplicateRows($table){
               if(getVisibleRowText($next) == getVisibleRowText($row)){
                 //$next.remove();
                 
-                $next.css('background-color', 'green');
+                $next.css('background-color', '#2196F3 ');
                 $next.addClass('borrar');
               }
                   
@@ -940,24 +940,31 @@ function randomSalesman() {
   var valor_celda_original = '';
   var valor_celda = '';
   var i = 0;
-  
+  console.log('Entra a generar vendedores');
   $('tr.active').each(function () {
+    //console.log(this);
+    console.log('i :: ' + i);
+    console.log('sale_row:: ' + sale_row );
     if (i === sale_row) {
         if(i === 0){
           this.cells[0].innerHTML = '>';
+          sale_row = 1;
         }else{
           if (randomSales < 6) {
           randomSales = randomSales + 1;
           sale_row = sale_row + getRandomInteger(10, 75);
+          console.log('Nuevo sale row:: ' + sale_row);
           //text_original = $('.td_counter_' + sale_row).text();
           valor_celda_original = this.cells[0].innerText;
           nuevo_texto = valor_celda_original + ' (' + salesman[Math.floor(Math.random() * salesman.length)] + ')';
+          console.log('Nuevo texto');
           this.cells[0].innerHTML = nuevo_texto;
           //$('.td_counter_' + sale_row).text(nuevo_texto);
 
         } else {
           randomSales = 1;
           sale_row = sale_row + getRandomInteger(75, 150);
+            console.log('Nuevo sale row:: ' + sale_row);
           valor_celda_original = this.cells[0].innerText;
           nuevo_texto = valor_celda_original + ' (' + salesman[Math.floor(Math.random() * salesman.length)] + ')';
           this.cells[0].innerHTML = nuevo_texto;
