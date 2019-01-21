@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
   //Tabla generada
   var tabla = '';
   //Version actual a mostrar en menu
-  document.getElementById('version').innerText = 'v1.1.5';
+  document.getElementById('version').innerText = 'v1.1.6';
 
   //Click en recargar version
   var el = document.getElementById('reload');
@@ -654,6 +654,10 @@ function clearTable(res,cant){
       if (texto_fila.includes(res) === false && !isNaN(row_index)) {
         console.log('No tiene ' + res + ' ' + texto_fila + ' // numero: ' + row_index);
         delete_array.push(row_index);
+        var tabla = document.getElementById('tabla');
+        var row = tabla.rows[i];
+        row.style.backgroundColor = 'orange';
+        row.classList.add("borrar");
       }else{
           console.log('Ignorado: ' + texto_fila);
       }
