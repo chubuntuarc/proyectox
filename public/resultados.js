@@ -441,6 +441,8 @@ $('#shuffle_btn').show();
 function filtrar(){
   console.log('Entra al nuevo borrar');
   $('.borrar').remove();
+  var rowCount = Number($('#tabla tr').length) - 1;
+  $('#total_columns').text('Total: ' + rowCount);
 }
 
 //Delete repet rows
@@ -464,6 +466,7 @@ function filtrarx(){
               row.classList.add("borrar");
             }
         });
+        borradores();
       break;
       case '2': //Filtro en el segundo partido L-E-V
         var count = 0;
@@ -482,6 +485,7 @@ function filtrarx(){
               count = 1;
             }
         });
+        borradores();
       break;
       case '3':
         var count = 0;
@@ -500,6 +504,7 @@ function filtrarx(){
               count = 1;
             }
         });
+        borradores();
       break;
       case '4':
         var count = 0;
@@ -518,6 +523,7 @@ function filtrarx(){
               count = 1;
             }
         });
+        borradores();
       break;
       case '5':
         var count = 0;
@@ -536,6 +542,7 @@ function filtrarx(){
               count = 1;
             }
         });
+        borradores();
       break;
       case '6':
         var count = 0;
@@ -554,6 +561,7 @@ function filtrarx(){
               count = 1;
             }
         });
+        borradores();
       break;
       case '7':
         var count = 0;
@@ -572,6 +580,7 @@ function filtrarx(){
               count = 1;
             }
         });
+        borradores();
       break;
       case '8':
         var count = 0;
@@ -590,6 +599,7 @@ function filtrarx(){
               count = 1;
             }
         });
+        borradores();
       break;
       case '9':
         var count = 0;
@@ -608,6 +618,7 @@ function filtrarx(){
               count = 1;
             }
         });
+        borradores();
       break;
       }
   }else{
@@ -631,13 +642,13 @@ function removeDuplicateRows($table){
     function getVisibleRowText($row){
         return $row.find('td.td-vals').text();
     }
-    
+      
       $table.find('tr').each(function(index, row){
           var $row = $(row);
       
+         
           $row.nextAll('tr').each(function(index, next){
               var $next = $(next);
-            console.log($next);
               if(getVisibleRowText($next) == getVisibleRowText($row)){
                 //$next.remove();
                 
@@ -647,7 +658,13 @@ function removeDuplicateRows($table){
                   
           });
       });
+  borradores();
   }
+
+function borradores(){
+  var a_borrar = $('.borrar').length;
+  $('#total_delete_columns').text('Por borrar: ' + a_borrar);
+}
 
 function borrar(){
   //$('.progress').show();
@@ -692,6 +709,7 @@ function clearTable(res,cant){
         var row = tabla.rows[i];
         row.style.backgroundColor = 'orange';
         row.classList.add("borrar");
+        borradores();
       }else{
           console.log('Ignorado: ' + texto_fila);
       }
@@ -723,6 +741,7 @@ function clearTable(res,cant){
           var row = tabla.rows[i];
           row.style.backgroundColor = 'orange';
           row.classList.add("borrar");
+          borradores();
 
           //$('.row_' + i).hide();
           //$('.row_' + i).attr('class', 'hidded');
@@ -736,26 +755,9 @@ function clearTable(res,cant){
   
   //Eliminar elementos del array
   console.log('Array a eliminar: ' + delete_array);
-  /* for(var j = 0; j < delete_array.length; j++){
-      console.log('A eliminar: ' + delete_array[j]);
-    var counter = parseInt($('#hide_counter').val());
-    console.log('Contador: ' + counter)
-      if(counter === 0){
-        var deleteRow = document.getElementsByClassName('row_' + delete_array[j])[0];
-        //deleteRow.parentNode.removeChild(deleteRow);
-        deleteRow.style.backgroundColor = 'orange';
-        deleteRow.classList.add("borrar");
-      }else{
-        var deleteRow = document.getElementsByClassName('row_count_' + delete_array[j])[0];
-        console.log('Delete row: ' + deleteRow)
-        //deleteRow.parentNode.removeChild(deleteRow);
-        deleteRow.style.backgroundColor = 'orange';
-        deleteRow.classList.add("borrar");
-        console.log('Se elimino: ' + 'row_count' + delete_array[j])
-      }
-  } */
   
   $('#hide_counter').val(1)
+  borradores();
   
 }
 
@@ -830,7 +832,7 @@ function reloadTds(){
   });
 
   randomSalesman();
-
+  
 }
 
 //Funcion para mostrar numeros consecutivos en el resultado...................................................................................
