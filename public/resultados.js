@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
   //Tabla generada
   var tabla = '';
   //Version actual a mostrar en menu
-  document.getElementById('version').innerText = 'v1.1.4';
+  document.getElementById('version').innerText = 'v1.1.5';
 
   //Click en recargar version
   var el = document.getElementById('reload');
@@ -135,7 +135,7 @@ function cleanTableData(value){
       }
       if (clean_e.options[clean_e.selectedIndex].value === clean_e.value) {
         var option = clean_e.querySelector('option[value="' + clean_e.value + '"]');
-        option.setAttribute("selected", true);
+        //option.setAttribute("selected", true);
         clean_e.removeChild(option);
       }
       break;
@@ -147,7 +147,7 @@ function cleanTableData(value){
       }
       if (clean_v.options[clean_v.selectedIndex].value === clean_v.value) {
         var option = clean_v.querySelector('option[value="' + clean_v.value + '"]');
-        option.setAttribute("selected", true);
+        //option.setAttribute("selected", true);
         clean_v.removeChild(option);
       }
       break;
@@ -681,6 +681,11 @@ function clearTable(res,cant){
           //var deleteRow = document.getElementsByClassName('row_' + i);
           //deleteRow[0].parentNode.removeChild(deleteRow[0]);
           delete_array.push(i);
+          var tabla = document.getElementById('tabla');
+          var row = tabla.rows[i];
+          row.style.backgroundColor = 'orange';
+          row.classList.add("borrar");
+
           //$('.row_' + i).hide();
           //$('.row_' + i).attr('class', 'hidded');
         }
@@ -693,20 +698,24 @@ function clearTable(res,cant){
   
   //Eliminar elementos del array
   console.log('Array a eliminar: ' + delete_array);
-  for(var j = 0; j < delete_array.length; j++){
+  /* for(var j = 0; j < delete_array.length; j++){
       console.log('A eliminar: ' + delete_array[j]);
     var counter = parseInt($('#hide_counter').val());
     console.log('Contador: ' + counter)
       if(counter === 0){
         var deleteRow = document.getElementsByClassName('row_' + delete_array[j])[0];
-        deleteRow.parentNode.removeChild(deleteRow);
+        //deleteRow.parentNode.removeChild(deleteRow);
+        deleteRow.style.backgroundColor = 'orange';
+        deleteRow.classList.add("borrar");
       }else{
         var deleteRow = document.getElementsByClassName('row_count_' + delete_array[j])[0];
         console.log('Delete row: ' + deleteRow)
-        deleteRow.parentNode.removeChild(deleteRow);
+        //deleteRow.parentNode.removeChild(deleteRow);
+        deleteRow.style.backgroundColor = 'orange';
+        deleteRow.classList.add("borrar");
         console.log('Se elimino: ' + 'row_count' + delete_array[j])
       }
-  }
+  } */
   
   $('#hide_counter').val(1)
   
