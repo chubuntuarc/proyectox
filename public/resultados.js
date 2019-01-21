@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
   //Tabla generada
   var tabla = '';
   //Version actual a mostrar en menu
-  document.getElementById('version').innerText = 'v1.1.6';
+  document.getElementById('version').innerText = 'v1.1.7';
 
   //Click en recargar version
   var el = document.getElementById('reload');
@@ -458,7 +458,10 @@ function filtrarx(){
               console.log(index)
             }else{
               console.log(index)
-              $('.row_'+index).remove();
+              //$('.row_'+index).remove();
+              var row = document.getElementsByClassName('row_'+index);
+              row.style.backgroundColor = 'green';
+              row.classList.add("borrar");
             }
         });
       break;
@@ -468,7 +471,10 @@ function filtrarx(){
           console.log(index);
           if(count > 3){
             console.log(index + 'borrado');
-               $('.row_'+index).remove();
+            //$('.row_'+index).remove();
+            var row = document.getElementsByClassName('row_' + index);
+            row.style.backgroundColor = 'green';
+            row.classList.add("borrar");
           }
           if(count < 9){
               count++;
@@ -483,7 +489,10 @@ function filtrarx(){
           console.log(index);
           if(count > 9){
             console.log(index + 'borrado');
-               $('.row_'+index).remove();
+            //$('.row_'+index).remove();
+            var row = document.getElementsByClassName('row_' + index);
+            row.style.backgroundColor = 'green';
+            row.classList.add("borrar");
           }
           if(count < 27){
               count++;
@@ -498,7 +507,10 @@ function filtrarx(){
           console.log(index);
           if(count > 27){
             console.log(index + 'borrado');
-               $('.row_'+index).remove();
+            //$('.row_'+index).remove();
+            var row = document.getElementsByClassName('row_' + index);
+            row.style.backgroundColor = 'green';
+            row.classList.add("borrar");
           }
           if(count < 81){
               count++;
@@ -513,7 +525,10 @@ function filtrarx(){
           console.log(index);
           if(count > 81){
             console.log(index + 'borrado');
-               $('.row_'+index).remove();
+            //$('.row_'+index).remove();
+            var row = document.getElementsByClassName('row_' + index);
+            row.style.backgroundColor = 'green';
+            row.classList.add("borrar");
           }
           if(count < 243){
               count++;
@@ -528,7 +543,10 @@ function filtrarx(){
           console.log(index);
           if(count > 243){
             console.log(index + 'borrado');
-               $('.row_'+index).remove();
+            //$('.row_'+index).remove();
+            var row = document.getElementsByClassName('row_' + index);
+            row.style.backgroundColor = 'green';
+            row.classList.add("borrar");
           }
           if(count < 729){
               count++;
@@ -543,7 +561,10 @@ function filtrarx(){
           console.log(index);
           if(count > 729){
             console.log(index + 'borrado');
-               $('.row_'+index).remove();
+            //$('.row_'+index).remove();
+            var row = document.getElementsByClassName('row_' + index);
+            row.style.backgroundColor = 'green';
+            row.classList.add("borrar");
           }
           if(count < 2187){
               count++;
@@ -558,7 +579,10 @@ function filtrarx(){
           console.log(index);
           if(count > 2187){
             console.log(index + 'borrado');
-               $('.row_'+index).remove();
+            //$('.row_'+index).remove();
+            var row = document.getElementsByClassName('row_' + index);
+            row.style.backgroundColor = 'green';
+            row.classList.add("borrar");  
           }
           if(count < 6561){
               count++;
@@ -573,7 +597,10 @@ function filtrarx(){
           console.log(index);
           if(count > 6561){
             console.log(index + 'borrado');
-               $('.row_'+index).remove();
+            //$('.row_'+index).remove();
+            var row = document.getElementsByClassName('row_' + index);
+            row.style.backgroundColor = 'green';
+            row.classList.add("borrar");
           }
           if(count < 19683){
               count++;
@@ -600,6 +627,7 @@ $('#shuffle_btn').show();
 }
 
 function removeDuplicateRows($table){
+  console.log('Entra a duplicados');
     function getVisibleRowText($row){
         return $row.find('td.td-vals').text();
     }
@@ -609,8 +637,14 @@ function removeDuplicateRows($table){
       
           $row.nextAll('tr').each(function(index, next){
               var $next = $(next);
-              if(getVisibleRowText($next) == getVisibleRowText($row))
-                  $next.remove();
+            console.log($next);
+              if(getVisibleRowText($next) == getVisibleRowText($row)){
+                //$next.remove();
+                
+                $next.css('background-color', 'green');
+                $next.addClass('borrar');
+              }
+                  
           });
       });
   }
