@@ -1,4 +1,4 @@
-const PRECACHE = 'v2.0.0_cache_x';
+const PRECACHE = 'v2.0.1_cache_x';
 const PRECACHE_URLS = [
     './index.html',
     'https://fonts.googleapis.com/icon?family=Material+Icons',

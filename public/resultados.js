@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
   //Tabla generada
   var tabla = '';
   //Version actual a mostrar en menu
-  document.getElementById('version').innerText = 'v2.0.0';
+  document.getElementById('version').innerText = 'v2.0.1';
 
   //Click en recargar version
   var el = document.getElementById('reload');
@@ -591,7 +591,7 @@ function filtrarx(){
             //$('.row_'+index).remove();
             var row = document.getElementsByClassName('row_' + index);
             row.style.backgroundColor = '#2196F3 ';
-            row.classList.add("borrar");  
+            row.classList.add("borrar");
           }
           if(count < 6561){
               count++;
@@ -864,6 +864,7 @@ function reloadNames(){
   var random_counts = 0;
   var last_repeat = 1;
   var counter = 0;
+  var arr_nombres = [];
 
   $('tr.active').each(function () {
     var name = names[Math.floor(Math.random() * names.length)];
@@ -881,6 +882,7 @@ function reloadNames(){
         name_to_repeat = name;
         valor_celda = counts + name_to_repeat;
         console.log('Se repite ' + name_to_repeat + ' ' + random_counts + ' veces.');
+        arr_nombres.push(name_to_repeat);
 
       } else if (counts > random_name_position && counts <= (random_name_position + random_counts)) {
         valor_celda = counts + name_to_repeat;
@@ -902,6 +904,7 @@ function reloadNames(){
         name_to_repeat = name;
         valor_celda = counts + name_to_repeat;
         console.log('Se repite ' + name_to_repeat + random_counts + ' veces.');
+        arr_nombres.push(name_to_repeat);
 
       } else if (counts > random_name_position && counts <= (random_name_position + random_counts)) {
         valor_celda = counts + name_to_repeat;
@@ -926,12 +929,12 @@ function reloadNames(){
     counts++;
   });
   
-  randomSalesman();
+  randomSalesman(arr_nombres);
   
 }
 
 //Funcion para obtener vendedores aleatorios........................................................................................................
-function randomSalesman() {
+function randomSalesman(array) {
   //Random salesmans counters
   var randomSales = 1;
   var sale_row = 0;
@@ -940,6 +943,9 @@ function randomSalesman() {
   var valor_celda_original = '';
   var valor_celda = '';
   var i = 0;
+  
+  console.log(array);
+  
   console.log('Entra a generar vendedores');
   $('tr.active').each(function () {
     //console.log(this);
@@ -958,7 +964,10 @@ function randomSalesman() {
           valor_celda_original = this.cells[0].innerText;
           nuevo_texto = valor_celda_original + ' (' + salesman[Math.floor(Math.random() * salesman.length)] + ')';
           console.log('Nuevo texto');
-          this.cells[0].innerHTML = nuevo_texto;
+          if(array.includes(valor_celda_original.replace(/[0-9]/g, "")) === false){
+              this.cells[0].innerHTML = nuevo_texto;
+          }
+          
           //$('.td_counter_' + sale_row).text(nuevo_texto);
 
         } else {
@@ -967,7 +976,9 @@ function randomSalesman() {
             console.log('Nuevo sale row:: ' + sale_row);
           valor_celda_original = this.cells[0].innerText;
           nuevo_texto = valor_celda_original + ' (' + salesman[Math.floor(Math.random() * salesman.length)] + ')';
-          this.cells[0].innerHTML = nuevo_texto;
+          if(array.includes(valor_celda_original.replace(/[0-9]/g, "")) === false){
+              this.cells[0].innerHTML = nuevo_texto;
+          }
           //$('.td_counter_' + sale_row).text(nuevo_texto);
         }
       }
