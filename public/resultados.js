@@ -257,7 +257,7 @@ function findRows(value) {
     $('#search_btns').hide();
     $('#shuffle_btn').hide();
     $('.sidenav').hide();
-    $('#tabla').css('margin-left', '-240px');
+    $('#tabla').css('margin-left', '0px');
     $('#menu').hide();
     $('tr').css('font-size','10px');
     
