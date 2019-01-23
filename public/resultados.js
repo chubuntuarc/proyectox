@@ -855,6 +855,84 @@ function reloadNumbers(){
 
 //Funcion para mostrar nombres y vendedores aleatorios...........................................................................................
 function reloadNames(){
+  var conteo = 0;
+  var cienes = 0;
+  var repeticiones = 5; //Numero de repeticiones
+  var repetidor = 1; //X veces en 100
+  var repetidor_nombres = 1; //X veces en 100
+  var repetidor_2 = 1; //1 vez en 350
+  var arr_nombres = []; //Arreglo de nombres.
+  var name_to_repeat = ''; //Nombre a repetir.
+  var posicion_aleatoria = cienes + getRandomInteger(0, 99); //Posicion aleatoria entre 100.
+  var random_counts = getRandomInteger(1, 7); //Repeticion 2-6
+
+  $('tr.active').each(function(){//Se recorren las filas
+    var name = names[Math.floor(Math.random() * names.length)]; //Nombre aleatorio
+
+    //Contador de filas
+    if (conteo === 0) { //Si es la primera fila, pone por defecto '>'
+
+      this.cells[0].innerHTML = '>';
+
+    } else {  //Si es el segundo en delante
+
+      if(repetidor <= repeticiones){
+        console.log('Repetidor : ' + repetidor);
+        console.log('Limite del repetidor: ' + repeticiones);
+        //----------------------------------------------------
+        console.log('Posicion a colocar repetido: ' + posicion_aleatoria);
+        console.log('Repeticiones en esa posicion: ' + random_counts);
+        console.log('Nombre: ' + name);
+        for(var i=1;i<=random_counts;i++){
+          if (i === 1) { arr_nombres.push(name);}
+          console.log('Se coloca ' + name + ' en la posicion ' + posicion_aleatoria + ' ' + i + '/' + random_counts);
+        }
+        posicion_aleatoria = cienes + getRandomInteger(0, 99);
+        random_counts = getRandomInteger(1, 7);
+        repetidor++;
+
+      }else{
+        repetidor = 1;
+        cienes += 100;
+      }
+
+    }
+    conteo++; //Se incrementa el contador
+    
+  });
+
+}
+
+//Nombres repetidos
+      /*
+      if (repetidor <= repeticiones || repetidor_nombres <= random_counts){ //Validar las 5 repeticiones
+
+        if (repetidor_nombres <= random_counts) { //Repetir X veces el nombre.
+
+          if (repetidor === 1) {
+            name_to_repeat = name; //Nombre a repetir
+          }
+
+          console.log('Se repite ' + name_to_repeat + ' , ' + random_counts + ' veces. Posicion: ' + posicion_aleatoria);
+
+        }else{
+          repetidor_nombres = 1;
+          random_counts = getRandomInteger(1, 7); //Volver a generar cantidad de repeticiones. 2-6
+        }
+
+      }else{ //Si pasa a 6 reinicia el contador de repeticiones
+        repetidor = 1; //Se reinicia el repetidor.
+        
+        cienes += 100;
+        posicion_aleatoria = cienes + getRandomInteger(0, 99); //Obtener una posicion aleatoria dentro del cien.
+
+        reptidor_nombre++;
+      } */
+
+      //Vendedores.
+    //randomSalesman(arr_nombres);
+
+function reloadNamesx(){
   var counts = 0;
   var random_name_position = getRandomInteger(5, 15);
   
@@ -875,10 +953,10 @@ function reloadNames(){
       
     }else{
       
-      if (last_repeat < 6) { //Nombres repetidos entre 5-15, 5 veces.
+      if (last_repeat < 8) { //Nombres repetidos entre 2-6, 8 veces.
         
       if (counts === random_name_position) {
-        random_counts = getRandomInteger(5, 15);
+        random_counts = getRandomInteger(2, 6);
         name_to_repeat = name;
         valor_celda = counts + name_to_repeat;
         console.log('Se repite ' + name_to_repeat + ' ' + random_counts + ' veces.');
@@ -897,10 +975,10 @@ function reloadNames(){
        valor_celda = counts + name;
       }
         
-    } else { //Nombres repetidos entre 15-25, 1 vez.
+    } else { //Nombres repetidos entre 10-25, 1 vez.
       
       if (counts === random_name_position) {
-        random_counts = getRandomInteger(5, 15);
+        random_counts = getRandomInteger(10, 25);
         name_to_repeat = name;
         valor_celda = counts + name_to_repeat;
         console.log('Se repite ' + name_to_repeat + random_counts + ' veces.');
