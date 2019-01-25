@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
   //Tabla generada
   var tabla = '';
   //Version actual a mostrar en menu
-  document.getElementById('version').innerText = 'v2.0.3';
+  document.getElementById('version').innerText = 'v2.0.4';
 
   //Click en recargar version
   var el = document.getElementById('reload');
@@ -445,6 +445,10 @@ function filtrar(){
   $('#total_columns').text('Total: ' + rowCount);
 }
 
+function reducir(){
+  removeDuplicateRows($('#tabla'));
+}
+
 //Delete repet rows
 function filtrarx(){
   console.log('Entro al filtro')
@@ -639,6 +643,7 @@ $('#shuffle_btn').show();
 
 function removeDuplicateRows($table){
   console.log('Entra a duplicados');
+  console.log('Cargando..')
     function getVisibleRowText($row){
         return $row.find('td.td-vals').text();
     }
@@ -651,7 +656,7 @@ function removeDuplicateRows($table){
               var $next = $(next);
               if(getVisibleRowText($next) == getVisibleRowText($row)){
                 //$next.remove();
-                
+                console.log('..');
                 $next.css('background-color', '#2196F3 ');
                 $next.addClass('borrar');
               }
