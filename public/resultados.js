@@ -410,9 +410,9 @@ function distinguir(){
         $('#tabla').find('tr').each(function(index, row){
           console.log(index);
           if(count > 6561){
-            console.log(index + 'borrado');
-           this.style.backgroundColor = '#2196F3 ';
-            this.classList.add("borrar");
+            console.log(index + 'borrado :: ' + this);
+           //this.style.backgroundColor = '#2196F3 ';
+            //this.classList.add("borrar");
           }
           if(count < 19683){
               count++;
@@ -446,7 +446,81 @@ function filtrar(){
 }
 
 function reducir(){
-  removeDuplicateRows($('#tabla'));
+  var cant = $('#partidos').val();
+  if (cant === '9') {
+    console.log('Entra al de 9');
+    var rango = busqueda9Juegos();
+    console.log('El rango es de : ' + rango.toString());
+
+    var contador = 1;
+    var ultimo = 1;
+    var borrar = 1;
+    for(var i=1;i<=19683;i++){
+      if (contador === ultimo) {
+        ultimo += rango;
+
+        console.log(contador);
+        var row = contador;
+        console.log(' en el renglon ' + row.toString());
+        contador = 1;
+
+        if (borrar === 2) {
+          var primer_limite = ultimo - rango;
+          var ultimo_limite = ultimo + rango - 1;
+          console.log('A borrar del  ' + primer_limite + ' hasta el ' + ultimo_limite);
+
+          for (var x = primer_limite; x <= ultimo_limite; x++) {
+            //var row = $('.row_' + x);
+            console.log(x);
+            //row[0].style.backgroundColor = '#2196F3 ';
+            //row[0].classList.add("borrar");
+          }
+
+          
+        }if(borrar === 3){
+          borrar = 1;  
+        }
+
+
+        borrar++;
+
+      }else{
+        contador++;
+      }
+    }
+
+    borradores(); //que es eso??
+
+  }else{
+    removeDuplicateRows($('#tabla')); //Se borran los pintados..
+  }
+}
+
+//Funcion para calcular renglones a borrar en 9 juegos.....................................................................................................
+function busqueda9Juegos() {
+  
+    var resultado = 0;
+    var renglonBusqueda = $('#tabla tr:nth-child(1)');
+    var value = renglonBusqueda[1].textContent;
+
+      var rows = document.getElementsByTagName('TR');
+
+      //Buscar filas con el resultado
+      var contador = 0
+      for (var i = 0; i < rows.length; i++) {
+        var texto = rows[i].innerText.replace(/(\r\n\t|\n|\r\t)/gm, "");
+        if (texto.includes(value.substring(1, 10))) {
+          if (contador === 1) { 
+            resultado = parseInt(i) - 1;
+            break;
+          }else{  
+            contador++;
+          }
+        }
+      }
+
+      return resultado;
+
 }
 
 //Delete repet rows
