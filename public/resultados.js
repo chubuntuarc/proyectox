@@ -445,51 +445,34 @@ function filtrar(){
   $('#total_columns').text('Total: ' + rowCount);
 }
 
+//Funcion para pintar de color las filas al dar click en boton reducir...................................................................................
 function reducir(){
   var cant = $('#partidos').val();
   if (cant === '9') {
     console.log('Entra al de 9');
-    var rango = busqueda9Juegos();
+
+    var rango = busqueda9Juegos(); //Calculo del rango.
     console.log('El rango es de : ' + rango.toString());
 
+    //For con limite de 19,683 filas de la tabla de 9 juegos.
+    var limite = rango * 3;
     var contador = 1;
-    var ultimo = 1;
-    var borrar = 1;
-    for(var i=1;i<=19683;i++){
-      if (contador === ultimo) {
-        ultimo += rango;
 
-        console.log(contador);
-        var row = contador;
-        console.log(' en el renglon ' + row.toString());
-        contador = 1;
+    for(var i=1;i<=1000;i++){
+     //Mostrar valores a borrar en base a dividir entre 3 y el rango de espacio.
+      if(contador > rango && contador <= limite){
 
-        if (borrar === 2) {
-          var primer_limite = ultimo - rango;
-          var ultimo_limite = ultimo + rango - 1;
-          console.log('A borrar del  ' + primer_limite + ' hasta el ' + ultimo_limite);
+        var row = $('.row_' + i);                   //Renglon a pintar.
+        row[0].style.backgroundColor = '#2196F3 ';  //Color.
+        row[0].classList.add("borrar");             //Clase para borrar.
 
-          for (var x = primer_limite; x <= ultimo_limite; x++) {
-            //var row = $('.row_' + x);
-            console.log(x);
-            //row[0].style.backgroundColor = '#2196F3 ';
-            //row[0].classList.add("borrar");
-          }
+        if (contador === limite) contador = 0;  //Se reinicia el contador del rango
 
-          
-        }if(borrar === 3){
-          borrar = 1;  
-        }
+     }
+      contador++; //Se incrementa el contador
+    } //--for
 
-
-        borrar++;
-
-      }else{
-        contador++;
-      }
-    }
-
-    borradores(); //que es eso??
+    borradores(); //Contar elementos a borrar..
 
   }else{
     removeDuplicateRows($('#tabla')); //Se borran los pintados..
