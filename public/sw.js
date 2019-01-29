@@ -1,4 +1,4 @@
-const PRECACHE = 'v2.0.5_cache_x';
+const PRECACHE = 'v2.0.6_cache_x';
 const PRECACHE_URLS = [
     './index.html',
     'https://fonts.googleapis.com/icon?family=Material+Icons',
@@ -24,7 +24,7 @@ const PRECACHE_URLS = [
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(PRECACHE)
-            .then(cache => cache.addAll(PRECACHE_URLS))
+        .then(cache => cache.addAll(PRECACHE_URLS))
     );
 });
 
@@ -41,20 +41,20 @@ self.addEventListener('activate', event => {
     );
 });
 
-self.addEventListener('message', function (event) {
+self.addEventListener('message', function(event) {
     if (event.data.action === 'skipWaiting') {
         self.skipWaiting();
     }
 });
 
-self.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', function(event) {
     event.respondWith(
         caches.match(event.request)
-            .then(function (response) {
-                if (response) {
-                    return response;
-                }
-                return fetch(event.request);
-            })
+        .then(function(response) {
+            if (response) {
+                return response;
+            }
+            return fetch(event.request);
+        })
     );
 });
