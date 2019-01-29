@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
   //Tabla generada
   var tabla = '';
   //Version actual a mostrar en menu
-  document.getElementById('version').innerText = 'v2.0.4';
+  document.getElementById('version').innerText = 'v2.0.5';
 
   //Click en recargar version
   var el = document.getElementById('reload');
@@ -458,7 +458,8 @@ function reducir(){
     var limite = rango * 3;
     var contador = 1;
 
-    for(var i=1;i<=1000;i++){
+    for(var i=1 ;i<=19683;i++){
+      console.log(i);
      //Mostrar valores a borrar en base a dividir entre 3 y el rango de espacio.
       if(contador > rango && contador <= limite){
 
