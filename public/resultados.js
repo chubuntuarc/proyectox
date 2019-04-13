@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //Tabla generada
     var tabla = '';
     //Version actual a mostrar en menu
-    document.getElementById('version').innerText = 'v2.0.6';
+    document.getElementById('version').innerText = 'v2.0.7';
 
     //Click en recargar version
     var el = document.getElementById('reload');
@@ -82,7 +82,12 @@ document.addEventListener('DOMContentLoaded', function() {
     select_partidos.addEventListener("change", function() {
         //Mostrar filtro de partidos
         var select_filtro_div = document.getElementById('select-filtro-div');
+        var select_filtro_div_2 = document.getElementById('select-filtro-div-2');
+        var select_filtro_div_3 = document.getElementById('select-filtro-div-3');
         select_filtro_div.classList.remove('hide');
+        select_filtro_div_2.classList.remove('hide');
+        select_filtro_div_3.classList.remove('hide');
+        
 
         //Partidos a calcular
         var cantidad = this.value;
@@ -96,14 +101,37 @@ document.addEventListener('DOMContentLoaded', function() {
     select_filtro.addEventListener("change", function() {
         this.setAttribute("disabled", true);
         document.getElementById('select-partido-div').classList.remove('hide');
+        document.getElementById('select-partido-div-2').classList.remove('hide');
+        document.getElementById('select-partido-div-3').classList.remove('hide');
     });
 
     //Elegir en que partido se agrega el filtro
-    var select_partido = document.getElementById('select-partido');
+     //Elegir en que partido se agrega el filtro
+    var select_partido = document.getElementById('select-filtro-div');
     select_partido.addEventListener("change", function() {
+        document.getElementById('boton-filtros-iniciales').classList.remove('hide');
+    });
+    
+    //Ejecutar filtro del boton inicial
+    var boton_filtros_iniciales = document.getElementById('boton-filtros-iniciales');
+    boton_filtros_iniciales.addEventListener("click", function() {
         loading.classList.remove('hide');
-        //Registrar cambios
-        filtrosPartidos();
+        //Registrar cambios filtro 1
+        var filtro = document.getElementById('select-filtro').value;
+        var columna = document.getElementById('select-partido').value;
+        filtrosPartidos(filtro, columna);
+        //Registrar cambios filtro 2
+        var filtro2 = document.getElementById('select-filtro-2').value;
+        var columna2 = document.getElementById('select-partido-2').value;
+        if(filtro2 != undefined && columna2 !== undefined){
+        filtrosPartidos(filtro2, columna2);
+        }//Registrar cambios filtro 3
+        var filtro3 = document.getElementById('select-filtro-3').value;
+        var columna3 = document.getElementById('select-partido-3').value;
+        if(filtro3 != undefined && columna3 !== undefined){
+        filtrosPartidos(filtro3, columna3);
+        }
+        mostrarElementos();
     });
 
 }, false);
@@ -207,10 +235,8 @@ function generarTabla(n) {
 }
 
 //Funcion para mostrar los resultados en los filtros de partido
-function filtrosPartidos() {
+function filtrosPartidos(filtro, columna) {
     //Activar el filtro por letra
-    var filtro = document.getElementById('select-filtro').value;
-    var columna = document.getElementById('select-partido').value;
     var columna_elegida = document.getElementsByClassName('col_' + columna);
     var nuevo_texto = '';
     switch (filtro) {
@@ -228,13 +254,20 @@ function filtrosPartidos() {
         columna_elegida.item(i).innerHTML = nuevo_texto;
     }
 
-    //Mostrar elementos
+    
+}
+
+function mostrarElementos(){
+  //Mostrar elementos
     document.getElementById('refresh').classList.remove('hide');
     document.getElementById('print_btn').classList.remove('hide');
     document.getElementById('search_btns').classList.remove('hide');
     document.getElementById('shuffle_btn').classList.remove('hide');
     document.getElementById('fil_btn').classList.remove('hide');
-    document.getElementById('work-place').classList.add('hide');
+    document.getElementById('filtro_inicial').classList.add('hide');
+    document.getElementById('filtro_inicial_2').classList.add('hide');
+    document.getElementById('filtro_inicial_3').classList.add('hide');
+    document.getElementById('filtro_inicial_4').classList.add('hide');
     loading.classList.add('hide');
 }
 
