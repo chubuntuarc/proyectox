@@ -162,6 +162,32 @@
         </div>
         </div>
         <div class="row" id="filtro_inicial_4">
+          <div class="input-field col s4 offset-s4 hide" id="select-filtro-div-4" >
+          <select id="select-filtro-4" style="font-size: 10px;">
+            <option value="0">-</option>
+            <option value="1">Local</option>
+            <option value="2">Empate</option>
+            <option value="3">Visita</option>
+          </select>
+          <label>4to Filtro</label>
+        </div>
+        <div class="input-field col s4 hide" id="select-partido-div-4">
+          <select id="select-partido-4" style="font-size: 10px;">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+          </select>
+          <label>4to Partido</label>
+        </div>
+        </div>
+        <div class="row" id="filtro_inicial_4">
           <a class="waves-effect waves-light btn col s12 hide" id="boton-filtros-iniciales">Comenzar</a>
         </div>
          <!--Clean data table-->
@@ -188,8 +214,8 @@
                 
                 <div class="row">
                   <div class="col s12">
-                    <a id="fil_btn" class="waves-effect waves-light btn col s3" onclick="reducir();$(this).addClass('disabled');$('#work-place').hide();">REDUCIR</a>
-                    <a class="waves-effect waves-light btn col s3 blue" onclick="filtrar();$('#work-place').hide();$('#total_delete_columns').text(' ')">BORRAR</a>
+                    <a id="fil_btn" class="waves-effect waves-light btn col s3" onclick="reducir();$(this).addClass('disabled');">REDUCIR</a>
+                    <a class="waves-effect waves-light btn col s3 blue" onclick="filtrar();$('#total_delete_columns').text(' ')">BORRAR</a>
                     <button onclick="reloadNames()" id="shuffle_btn" class="waves-effect waves-light btn orange col s3">Nombrar</button>
                     <button id="print_btn" onclick="imprimir()" class="waves-effect waves-light btn col s3 red">Imprimir</button>
                   </div>

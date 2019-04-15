@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //Tabla generada
     var tabla = '';
     //Version actual a mostrar en menu
-    document.getElementById('version').innerText = 'v2.0.7';
+    document.getElementById('version').innerText = 'v2.0.8';
 
     //Click en recargar version
     var el = document.getElementById('reload');
@@ -84,9 +84,11 @@ document.addEventListener('DOMContentLoaded', function() {
         var select_filtro_div = document.getElementById('select-filtro-div');
         var select_filtro_div_2 = document.getElementById('select-filtro-div-2');
         var select_filtro_div_3 = document.getElementById('select-filtro-div-3');
+        var select_filtro_div_4 = document.getElementById('select-filtro-div-4');
         select_filtro_div.classList.remove('hide');
         select_filtro_div_2.classList.remove('hide');
         select_filtro_div_3.classList.remove('hide');
+        select_filtro_div_4.classList.remove('hide');
         
 
         //Partidos a calcular
@@ -103,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('select-partido-div').classList.remove('hide');
         document.getElementById('select-partido-div-2').classList.remove('hide');
         document.getElementById('select-partido-div-3').classList.remove('hide');
+        document.getElementById('select-partido-div-4').classList.remove('hide');
     });
 
     //Elegir en que partido se agrega el filtro
@@ -130,6 +133,12 @@ document.addEventListener('DOMContentLoaded', function() {
         var columna3 = document.getElementById('select-partido-3').value;
         if(filtro3 != undefined && columna3 !== undefined){
         filtrosPartidos(filtro3, columna3);
+        }
+        //Registrar cambios filtro 4
+        var filtro4 = document.getElementById('select-filtro-4').value;
+        var columna4 = document.getElementById('select-partido-4').value;
+        if (filtro4 != undefined && columna4 !== undefined){
+            filtrosPartidos(filtro4, columna4);
         }
         mostrarElementos();
     });
