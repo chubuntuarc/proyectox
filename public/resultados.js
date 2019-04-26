@@ -515,7 +515,8 @@ function filtrar() {
 //Funcion para pintar de color las filas al dar click en boton reducir...................................................................................
 function reducir() {
     var cant = $('#partidos').val();
-    if (cant === '9') {
+    removeDuplicateRows($('#tabla')); //Se borran los pintados..
+    /*if (cant === '9') {
         console.log('Entra al de 9');
 
         var rango = busqueda9Juegos(); //Calculo del rango.
@@ -544,7 +545,7 @@ function reducir() {
 
     } else {
         removeDuplicateRows($('#tabla')); //Se borran los pintados..
-    }
+    }*/
 }
 
 //Funcion para calcular renglones a borrar en 9 juegos.....................................................................................................
@@ -581,188 +582,192 @@ function filtrarx() {
     var cant = $('#partidos').val();
     var filtro_letra = $('#select-filtro').val();
     var filtro_numero = $('#select-partido').val();
-    if (cant === '9') {
-        switch (filtro_numero) {
-            case '1': //Filtro en el primer partido L-E-V
-                $('#tabla').find('tr').each(function(index, row) {
-                    if ((index % 3) == 0) {
-                        console.log(index)
-                    } else {
-                        console.log(index)
-                            //$('.row_'+index).remove();
-                        var row = document.getElementsByClassName('row_' + index);
-                        row.style.backgroundColor = '#2196F3 ';
-                        row.classList.add("borrar");
-                    }
-                });
-                borradores();
-                break;
-            case '2': //Filtro en el segundo partido L-E-V
-                var count = 0;
-                $('#tabla').find('tr').each(function(index, row) {
-                    console.log(index);
-                    if (count > 3) {
-                        console.log(index + 'borrado');
-                        //$('.row_'+index).remove();
-                        var row = document.getElementsByClassName('row_' + index);
-                        row.style.backgroundColor = '#2196F3 ';
-                        row.classList.add("borrar");
-                    }
-                    if (count < 9) {
-                        count++;
-                    } else {
-                        count = 1;
-                    }
-                });
-                borradores();
-                break;
-            case '3':
-                var count = 0;
-                $('#tabla').find('tr').each(function(index, row) {
-                    console.log(index);
-                    if (count > 9) {
-                        console.log(index + 'borrado');
-                        //$('.row_'+index).remove();
-                        var row = document.getElementsByClassName('row_' + index);
-                        row.style.backgroundColor = '#2196F3 ';
-                        row.classList.add("borrar");
-                    }
-                    if (count < 27) {
-                        count++;
-                    } else {
-                        count = 1;
-                    }
-                });
-                borradores();
-                break;
-            case '4':
-                var count = 0;
-                $('#tabla').find('tr').each(function(index, row) {
-                    console.log(index);
-                    if (count > 27) {
-                        console.log(index + 'borrado');
-                        //$('.row_'+index).remove();
-                        var row = document.getElementsByClassName('row_' + index);
-                        row.style.backgroundColor = '#2196F3 ';
-                        row.classList.add("borrar");
-                    }
-                    if (count < 81) {
-                        count++;
-                    } else {
-                        count = 1;
-                    }
-                });
-                borradores();
-                break;
-            case '5':
-                var count = 0;
-                $('#tabla').find('tr').each(function(index, row) {
-                    console.log(index);
-                    if (count > 81) {
-                        console.log(index + 'borrado');
-                        //$('.row_'+index).remove();
-                        var row = document.getElementsByClassName('row_' + index);
-                        row.style.backgroundColor = '#2196F3 ';
-                        row.classList.add("borrar");
-                    }
-                    if (count < 243) {
-                        count++;
-                    } else {
-                        count = 1;
-                    }
-                });
-                borradores();
-                break;
-            case '6':
-                var count = 0;
-                $('#tabla').find('tr').each(function(index, row) {
-                    console.log(index);
-                    if (count > 243) {
-                        console.log(index + 'borrado');
-                        //$('.row_'+index).remove();
-                        var row = document.getElementsByClassName('row_' + index);
-                        row.style.backgroundColor = '#2196F3 ';
-                        row.classList.add("borrar");
-                    }
-                    if (count < 729) {
-                        count++;
-                    } else {
-                        count = 1;
-                    }
-                });
-                borradores();
-                break;
-            case '7':
-                var count = 0;
-                $('#tabla').find('tr').each(function(index, row) {
-                    console.log(index);
-                    if (count > 729) {
-                        console.log(index + 'borrado');
-                        //$('.row_'+index).remove();
-                        var row = document.getElementsByClassName('row_' + index);
-                        row.style.backgroundColor = '#2196F3 ';
-                        row.classList.add("borrar");
-                    }
-                    if (count < 2187) {
-                        count++;
-                    } else {
-                        count = 1;
-                    }
-                });
-                borradores();
-                break;
-            case '8':
-                var count = 0;
-                $('#tabla').find('tr').each(function(index, row) {
-                    console.log(index);
-                    if (count > 2187) {
-                        console.log(index + 'borrado');
-                        //$('.row_'+index).remove();
-                        var row = document.getElementsByClassName('row_' + index);
-                        row.style.backgroundColor = '#2196F3 ';
-                        row.classList.add("borrar");
-                    }
-                    if (count < 6561) {
-                        count++;
-                    } else {
-                        count = 1;
-                    }
-                });
-                borradores();
-                break;
-            case '9':
-                var count = 0;
-                $('#tabla').find('tr').each(function(index, row) {
-                    console.log(index);
-                    if (count > 6561) {
-                        console.log(index + 'borrado');
-                        //$('.row_'+index).remove();
-                        var row = document.getElementsByClassName('row_' + index);
-                        row.style.backgroundColor = '#2196F3 ';
-                        row.classList.add("borrar");
-                    }
-                    if (count < 19683) {
-                        count++;
-                    } else {
-                        count = 1;
-                    }
-                });
-                borradores();
-                break;
-        }
-    } else {
+   try {
+       if (cant === '9') {
+           switch (filtro_numero) {
+               case '1': //Filtro en el primer partido L-E-V
+                   $('#tabla').find('tr').each(function (index, row) {
+                       if ((index % 3) == 0) {
+                           console.log(index)
+                       } else {
+                           console.log(index)
+                           //$('.row_'+index).remove();
+                           var row = document.getElementsByClassName('row_' + index);
+                           row.style.backgroundColor = '#2196F3 ';
+                           row.classList.add("borrar");
+                       }
+                   });
+                   borradores();
+                   break;
+               case '2': //Filtro en el segundo partido L-E-V
+                   var count = 0;
+                   $('#tabla').find('tr').each(function (index, row) {
+                       console.log(index);
+                       if (count > 3) {
+                           console.log(index + 'borrado');
+                           //$('.row_'+index).remove();
+                           var row = document.getElementsByClassName('row_' + index);
+                           row.style.backgroundColor = '#2196F3 ';
+                           row.classList.add("borrar");
+                       }
+                       if (count < 9) {
+                           count++;
+                       } else {
+                           count = 1;
+                       }
+                   });
+                   borradores();
+                   break;
+               case '3':
+                   var count = 0;
+                   $('#tabla').find('tr').each(function (index, row) {
+                       console.log(index);
+                       if (count > 9) {
+                           console.log(index + 'borrado');
+                           //$('.row_'+index).remove();
+                           var row = document.getElementsByClassName('row_' + index);
+                           row.style.backgroundColor = '#2196F3 ';
+                           row.classList.add("borrar");
+                       }
+                       if (count < 27) {
+                           count++;
+                       } else {
+                           count = 1;
+                       }
+                   });
+                   borradores();
+                   break;
+               case '4':
+                   var count = 0;
+                   $('#tabla').find('tr').each(function (index, row) {
+                       console.log(index);
+                       if (count > 27) {
+                           console.log(index + 'borrado');
+                           //$('.row_'+index).remove();
+                           var row = document.getElementsByClassName('row_' + index);
+                           row.style.backgroundColor = '#2196F3 ';
+                           row.classList.add("borrar");
+                       }
+                       if (count < 81) {
+                           count++;
+                       } else {
+                           count = 1;
+                       }
+                   });
+                   borradores();
+                   break;
+               case '5':
+                   var count = 0;
+                   $('#tabla').find('tr').each(function (index, row) {
+                       console.log(index);
+                       if (count > 81) {
+                           console.log(index + 'borrado');
+                           //$('.row_'+index).remove();
+                           var row = document.getElementsByClassName('row_' + index);
+                           row.style.backgroundColor = '#2196F3 ';
+                           row.classList.add("borrar");
+                       }
+                       if (count < 243) {
+                           count++;
+                       } else {
+                           count = 1;
+                       }
+                   });
+                   borradores();
+                   break;
+               case '6':
+                   var count = 0;
+                   $('#tabla').find('tr').each(function (index, row) {
+                       console.log(index);
+                       if (count > 243) {
+                           console.log(index + 'borrado');
+                           //$('.row_'+index).remove();
+                           var row = document.getElementsByClassName('row_' + index);
+                           row.style.backgroundColor = '#2196F3 ';
+                           row.classList.add("borrar");
+                       }
+                       if (count < 729) {
+                           count++;
+                       } else {
+                           count = 1;
+                       }
+                   });
+                   borradores();
+                   break;
+               case '7':
+                   var count = 0;
+                   $('#tabla').find('tr').each(function (index, row) {
+                       console.log(index);
+                       if (count > 729) {
+                           console.log(index + 'borrado');
+                           //$('.row_'+index).remove();
+                           var row = document.getElementsByClassName('row_' + index);
+                           row.style.backgroundColor = '#2196F3 ';
+                           row.classList.add("borrar");
+                       }
+                       if (count < 2187) {
+                           count++;
+                       } else {
+                           count = 1;
+                       }
+                   });
+                   borradores();
+                   break;
+               case '8':
+                   var count = 0;
+                   $('#tabla').find('tr').each(function (index, row) {
+                       console.log(index);
+                       if (count > 2187) {
+                           console.log(index + 'borrado');
+                           //$('.row_'+index).remove();
+                           var row = document.getElementsByClassName('row_' + index);
+                           row.style.backgroundColor = '#2196F3 ';
+                           row.classList.add("borrar");
+                       }
+                       if (count < 6561) {
+                           count++;
+                       } else {
+                           count = 1;
+                       }
+                   });
+                   borradores();
+                   break;
+               case '9':
+                   var count = 0;
+                   $('#tabla').find('tr').each(function (index, row) {
+                       console.log(index);
+                       if (count > 6561) {
+                           console.log(index + 'borrado');
+                           //$('.row_'+index).remove();
+                           var row = document.getElementsByClassName('row_' + index);
+                           row.style.backgroundColor = '#2196F3 ';
+                           row.classList.add("borrar");
+                       }
+                       if (count < 19683) {
+                           count++;
+                       } else {
+                           count = 1;
+                       }
+                   });
+                   borradores();
+                   break;
+           }
+       } else {
 
-        removeDuplicateRows($('#tabla'));
-    }
+           removeDuplicateRows($('#tabla'));
+       }
 
 
-    //reloadTds();
-    $('#print_btn').show();
-    $('#search_btns').show();
-    $('#shuffle_btn').show();
-    if ($('#search_value').val() !== '') {
-        findRows($('#search_value').val());
-    }
+       //reloadTds();
+       $('#print_btn').show();
+       $('#search_btns').show();
+       $('#shuffle_btn').show();
+       if ($('#search_value').val() !== '') {
+           findRows($('#search_value').val());
+       }
+   } catch (error) {
+       
+   }
 
 }
 
@@ -774,19 +779,22 @@ function removeDuplicateRows($table) {
         return $row.find('td.td-vals').text();
     }
 
-    $table.find('tr').each(function(index, row) {
+    $table.find('tr').each(function (index, row) {
         var $row = $(row);
 
 
-        $row.nextAll('tr').each(function(index, next) {
+        $row.nextAll('tr').each(function (index, next) {
             var $next = $(next);
+            try{
             if (getVisibleRowText($next) == getVisibleRowText($row)) {
                 //$next.remove();
-                console.log('..');
+                console.log('..' + index);
                 $next.css('background-color', '#2196F3 ');
                 $next.addClass('borrar');
             }
+            } catch (error) {
 
+            }
         });
     });
     borradores();
